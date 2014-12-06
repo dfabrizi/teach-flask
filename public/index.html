@@ -1,22 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Here is my website</title>
+	<title>CheatSheet</title>
+	<!-- Here we are loading the JQuery source from a cdn -->
 	<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
 </head>
 <body>
-	I am the index
-	<a href="https://www.google.com" title="">Google</a>
-	
+	<!-- Divs are used to group html elements together-->
+	<div>
+		<input class="input-box" type="text">
+		<button onclick="fetchInfo()">Click me to Submit</button>
+	</div>
+
+	<div class="answers"></div>
+
+	<!-- This is javascript that we have embedded into our HTML (inline-javascript) -->
 	<script>
-	var answer = prompt("what is 1 + 1 equal to?");
+	$('.input-box').keydown(function (event) {
+		/* 
+		 Event is an object that the keydown function passes to the function inside the 
+		 parenthesis. It has a bunch of data about the event like which key was pressed.
+		 
+		 The enter key has the code 13 so if we want the fetchInfo function to happen
+		 when the enter key is pressed we can do this:
+		*/
+		var keycode = event.which;
+		//console.log(keycode);
 
-	var response = (answer === "2");
+		if (keycode === 13) {
+			fetchInfo();
+			// clear the input box after submission
+			$('.input-box').val('');
+		}
+	});
 
-	var answer2 = confirm("Your answer was " + response);
-	// answer2 will be true if the user presses OK
-	// answer2 will be false if the user presses Cancel
-	confirm(answer2);
+	function fetchInfo () {
+		var info = $('.input-box').val();
+		// alert("You typed: " + info); // alerts, confirm, and prompt are annoying
+		$('.answers').append("<p>" + info + "</p>");
+	}
+
 	</script>
 </body>
 </html>
