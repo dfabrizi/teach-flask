@@ -29,8 +29,6 @@
 
 		if (keycode === 13) {
 			fetchInfo();
-			// clear the input box after submission
-			$('.input-box').val('');
 		}
 	});
 
@@ -38,6 +36,7 @@
 		var info = $('.input-box').val();
 		// alert("You typed: " + info); // alerts, confirm, and prompt are annoying
 		$('.answers').append("<p>" + info + "</p>");
+		$('.input-box').val('');
 	}
 
 	</script>
